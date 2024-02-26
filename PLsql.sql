@@ -30,28 +30,14 @@ CREATE OR REPLACE PACKAGE BODY horizontal_miniterm_fragment_generator AS
       IF INSTR(relations, l_predicate.object) > 0 THEN
         fragments := fragments || l_predicate.object;
       ELSE
-        fragments := fragments || '?'; -- Use placeholder for variables
+        fragments := fragments || '?'; 
       END IF;
-      fragments := fragments || CHR(10); -- Add newline for each fragment
+      fragments := fragments || CHR(10); 
     END LOOP;
     CLOSE predicates;
   END;
 /
 
-
--- Example usage
-DECLARE
-  l_relations relation_table := relation_table('customer', 'order', 'product');
-  l_predicates SYS_REFCURSOR;
-  l_fragments VARCHAR2(1000);
-BEGIN
-  OPEN l_predicates FOR SELECT subject, predicate_name, object FROM predicates; -- Replace with your actual SELECT statement
-
-  horizontal_miniterm_fragment_generator.generate_fragments(l_relations, l_predicates, l_fragments);
-
-  DBMS_OUTPUT.PUT_LINE(l_fragments);
-END;
-/
 
 
 

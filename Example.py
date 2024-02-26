@@ -1,9 +1,10 @@
 from hor_fragment import * 
 
-relations = ["customer", "order", "product"]
-predicates = [("customer", "placed_order", "order"), ("order", "includes", "product")]
+predicates = [("student", "entered_department", "department"), ("department", "includes", "course")]
+relations = ["student", "department", "course"]
+
 print("work hear")
-generator = HorizontalMinitermFragmentGenerator(relations)
+generator = GeneratorHorizontalMinitermFragment(relations)
 print("hear too")
-fragments = generator.generate_fragments(predicates)
+fragments = generator.gen_fragments(predicates)
 print(fragments)

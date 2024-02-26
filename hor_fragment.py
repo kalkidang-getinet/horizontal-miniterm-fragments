@@ -1,17 +1,17 @@
-class HorizontalMinitermFragmentGenerator:
+class GeneratorHorizontalMinitermFragment:
     def __init__(self, relations):
         self.relations = relations
 
-    def generate_fragments(self, predicates):
+    def gen_fragments(self, predicates):
         fragments = []
         for predicate in predicates:
-            subject, predicate_name, object_ = predicate  # Unpack predicate elements
+            subject, predicate_name, object_ = predicate 
 
             fragment = subject + "." + predicate_name + " = "
             if object_ in self.relations:
-                fragment += object_  # Directly append relation name if it's a relation
+                fragment += object_ 
             else:
-                fragment += "?"  # Use placeholder for variables
+                fragment += "?"  
             fragments.append(fragment)
         return fragments
 
